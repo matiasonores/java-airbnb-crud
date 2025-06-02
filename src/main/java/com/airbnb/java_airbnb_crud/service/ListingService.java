@@ -10,5 +10,27 @@ import java.util.Optional;
 
 @Service
 public class ListingService {
-	
+
+    @Autowired
+    private ListingRepository listingRepository;
+
+    public List<Listing> getAllListings() {
+        return listingRepository.findAll();
+    }
+    
+    public Optional<Listing> getListingById(String id) {
+        return listingRepository.findById(id);
+    }
+
+    public Listing saveListing(Listing listing) {
+        return listingRepository.save(listing);
+    }
+
+    public void deleteListing(String id) {
+        listingRepository.deleteById(id);
+    }
+    
+    public List<Listing> findByName(String name) {
+        return listingRepository.findByNameContainingIgnoreCase(name);
+    }
 }
