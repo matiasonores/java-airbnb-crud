@@ -40,7 +40,7 @@ public class ListingService {
 
     // Buscar listings por nombre
     public List<Listings> findByName(String name) {
-        List<Listings> matchingListings = listingRepository.findByNameContainingIgnoreCase(name);
+        List<Listings> matchingListings = listingRepository.findByName(name);
         return matchingListings;
     }
 

@@ -23,6 +23,6 @@ public interface ListingRepository extends MongoRepository<Listings, String> {
     boolean existsById(String id);
 
     // Para buscar listings por nombre
-    List<Listings> findByNameContainingIgnoreCase(String name);
+    List<Listings> findByName(String name);
 
 }
