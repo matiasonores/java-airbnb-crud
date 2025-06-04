@@ -1,6 +1,6 @@
 package com.airbnb.java_airbnb_crud.controller;
 
-import com.airbnb.java_airbnb_crud.model.Listing;
+import com.airbnb.java_airbnb_crud.model.Listings;
 import com.airbnb.java_airbnb_crud.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,36 +14,36 @@ import java.util.Optional;
 public class ListingController {
 
     @Autowired
-    private ListingService listingService;
+    private ListingService listingsService;
 
     // GET /api/listings  - Get all
     @GetMapping
-    public List<Listing> getAllListings() {
-        return listingService.getAllListings();
+    public List<Listings> getAllListings() {
+        return listingsService.getAllListings();
     }
 
     // GET /api/listings/{id} - Get por id
     @GetMapping("/{id}")
-    public ResponseEntity<Listing> getListingById(@PathVariable String id) {
-        Optional<Listing> listing = listingService.getListingById(id);
+    public ResponseEntity<Listings> getListingById(@PathVariable String id) {
+        Optional<Listings> listing = listingsService.getListingById(id);
         return listing.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // POST /api/listings - Create new
     @PostMapping
-    public Listing createListing(@RequestBody Listing listing) {
-        return listingService.saveListing(listing);
+    public Listings createListing(@RequestBody Listings listing) {
+        return listingsService.saveListing(listing);
     }
 
     // PUT /api/listings/{id} - Update one
     @PutMapping("/{id}")
-    public ResponseEntity<Listing> updateListing(@PathVariable String id, @RequestBody Listing listingDetails) {
-        Optional<Listing> existingListing = listingService.getListingById(id);
+    public ResponseEntity<Listings> updateListing(@PathVariable String id, @RequestBody Listings listingDetails) {
+        Optional<Listings> existingListing = listingsService.getListingById(id);
         if (existingListing.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        Listing listing = existingListing.get();
+        Listings listing = existingListing.get();
 
         listing.setName(listingDetails.getName());
         listing.setSummary(listingDetails.getSummary());
@@ -52,14 +52,14 @@ public class ListingController {
          */
 
 
-        Listing updatedListing = listingService.saveListing(listing);
+        Listings updatedListing = listingsService.saveListing(listing);
         return ResponseEntity.ok(updatedListing);
     }
 
     // DELETE /api/listings/{id} - Delete one
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteListing(@PathVariable String id) {
-        listingService.deleteListing(id);
+        listingsService.deleteListing(id);
         return ResponseEntity.noContent().build();
     }
 }
