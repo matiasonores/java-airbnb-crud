@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "listingsAndReviews")
 public class Listings {
@@ -38,7 +38,7 @@ public class Listings {
     int beds;
     int number_of_reviews;
     int bathrooms;
-    ArrayList<String> amenities;
+    List<String> amenities;
     BigDecimal price;
     BigDecimal weekly_price;
     BigDecimal monthly_price;
@@ -50,7 +50,7 @@ public class Listings {
     Address address;
     Availability availability;
     ReviewScores review_scores;
-    ArrayList<Review> reviews;
+    List<Review> reviews;
 
     // === Getters y Setters ===
     @JsonProperty("_id")
@@ -106,7 +106,7 @@ public class Listings {
     public void setDescription(String description) {
         this.description = description;
     }
-    /*
+    
     @JsonProperty("neighborhood_overview")
     public String getNeighborhood_overview() {
         return this.neighborhood_overview;
@@ -297,11 +297,11 @@ public class Listings {
     }
 
     @JsonProperty("amenities")
-    public ArrayList<String> getAmenities() {
+    public List<String> getAmenities() {
         return this.amenities;
     }
 
-    public void setAmenities(ArrayList<String> amenities) {
+    public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
     }
 
@@ -403,14 +403,14 @@ public class Listings {
     public void setReview_scores(ReviewScores review_scores) {
         this.review_scores = review_scores;
     }
-
+    
     @JsonProperty("reviews")
-    public ArrayList<Review> getReviews() {
+    public List<Review> getReviews() {
         return this.reviews;
     }
 
-    public void setReviews(ArrayList<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
-    */
+    
 }
